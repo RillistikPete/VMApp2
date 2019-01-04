@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Vidly.Models.Customer>
+@*
+    3 +      Note: I've set the model for this view to IEnumerable<Customer>.
+    4 +      This is a simple interface implemented by the list class. Since
+    5 +      in this view we only want to iterate over this list, and we don't
+    6 +      need any of the operations in the List class (eg Add, Remove, etc),
+    7 +      it's better to use the IEnumerable interface, which allows use to
+    8 +      iterate over the list. If in the future, we replace the List with a
+    9 +      different data structure, as long as it is enumerable, our view code
+    10 +      will remain unchanged.
+    11 +  *@
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer Index</h2>
+
+@if (!Model.Any())
+{
+    <p>No customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var customer in Model)
+            {
+                <tr>
+                    <td>customer.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
