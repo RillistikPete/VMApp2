@@ -1,7 +1,15 @@
-﻿
+﻿@model VMApp2.Models.Customer
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+</ul>
+@if (Model.BirthDate.HasValue)
+{
+    <li>Birthdate: @Model.BirthDate.Value.ToShortDateString()</li>
+}
 
