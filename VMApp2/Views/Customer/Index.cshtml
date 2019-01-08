@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vidly.Models.Customer>
+﻿@model IEnumerable<VMApp2.Models.Customer>
 @*
     3 +      Note: I've set the model for this view to IEnumerable<Customer>.
     4 +      This is a simple interface implemented by the list class. Since
@@ -34,7 +34,7 @@ else
             @foreach(var customer in Model)
             {
                 <tr>
-                    <td>customer.Name</td>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new {@class = "btn btn-primary"})</td>
                 </tr>
             }
         </tbody>

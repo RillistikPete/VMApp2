@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Vidly.Models;
-using Vidly.Views.ViewModels;
+using VMApp2.Models;
+using VMApp2.Views.ViewModels;
 
-namespace Vidly.Controllers
+namespace VMApp2.Controllers
 {
     public class MovieController : Controller
     {
