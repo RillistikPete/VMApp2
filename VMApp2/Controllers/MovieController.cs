@@ -10,6 +10,14 @@ namespace VMApp2.Controllers
 {
     public class MovieController : Controller
     {
+        //Instantiate Database call
+        private ApplicationDbContext _context;
+
+        public MovieController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         // GET: Movie/Random
         public ActionResult Random()
         {
@@ -42,20 +50,13 @@ namespace VMApp2.Controllers
 
         public ActionResult Index()
         {
-            var movies = GetMovies();
+            //Need System.Data.Entity for m.Genre via Eager Loading
+            var movies = _context.Movies.Include(m => m.GenreId);
 
             return View(movies);
         }
 
-        public IEnumerable<Movie> GetMovies()
-        {
-            return new List<Movie>()
-            {
-                new Movie {Id=1, Name="Anchorman" },
-                new Movie {Id=2, Name="Step Brothers"}
-            };
 
-        }
 
         [Route("movie/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1, 12)}")]
         public ActionResult ByReleaseDate(int year, byte month)
