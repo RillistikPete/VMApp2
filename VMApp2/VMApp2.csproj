@@ -241,6 +241,18 @@
     <Compile Include="Migrations\201901100133267_UpdateBirthDateForCustomers.Designer.cs">
       <DependentUpon>201901100133267_UpdateBirthDateForCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901130044240_AddPropsToMovie.cs" />
+    <Compile Include="Migrations\201901130044240_AddPropsToMovie.Designer.cs">
+      <DependentUpon>201901130044240_AddPropsToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901130053411_PopulateGenreTable.cs" />
+    <Compile Include="Migrations\201901130053411_PopulateGenreTable.Designer.cs">
+      <DependentUpon>201901130053411_PopulateGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901130124137_PopulateMovieTable.cs" />
+    <Compile Include="Migrations\201901130124137_PopulateMovieTable.Designer.cs">
+      <DependentUpon>201901130124137_PopulateMovieTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -319,6 +331,7 @@
     <Content Include="Views\Movie\Random.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Movie\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -369,6 +382,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901100133267_UpdateBirthDateForCustomers.resx">
       <DependentUpon>201901100133267_UpdateBirthDateForCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130044240_AddPropsToMovie.resx">
+      <DependentUpon>201901130044240_AddPropsToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130053411_PopulateGenreTable.resx">
+      <DependentUpon>201901130053411_PopulateGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130124137_PopulateMovieTable.resx">
+      <DependentUpon>201901130124137_PopulateMovieTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

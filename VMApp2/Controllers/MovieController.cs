@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VMApp2.Models;
 using VMApp2.Views.ViewModels;
+using System.Data.Entity;
 
 namespace VMApp2.Controllers
 {
@@ -17,6 +18,41 @@ namespace VMApp2.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        
+        public ActionResult Index()
+        {
+            //Need System.Data.Entity for m.Genre via Eager Loading
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+
+            return View(movies);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == m.Id);
+
+            if(movie == null)
+                return HttpNotFound();
+
+            return View(movie);
+        }
+
+        //public ActionResult Index(int? pageIndex, string sortBy)
+        //{
+        //if (!pageIndex.HasValue)
+        //    pageIndex = 1;
+        //if (String.IsNullOrWhiteSpace(sortBy))
+        //    sortBy = "Name";
+        //return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+
+        //    return View();
+        //}
 
         // GET: Movie/Random
         public ActionResult Random()
@@ -31,31 +67,6 @@ namespace VMApp2.Controllers
             
             return View(viewModel);
         }
-
-        public ActionResult Edit(int id)
-        {
-            return Content("id=" + id);
-        }
-
-        //public ActionResult Index(int? pageIndex, string sortBy)
-        //{
-            //if (!pageIndex.HasValue)
-            //    pageIndex = 1;
-            //if (String.IsNullOrWhiteSpace(sortBy))
-            //    sortBy = "Name";
-            //return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
-
-        //    return View();
-        //}
-
-        public ActionResult Index()
-        {
-            //Need System.Data.Entity for m.Genre via Eager Loading
-            var movies = _context.Movies.Include(m => m.GenreId);
-
-            return View(movies);
-        }
-
 
 
         [Route("movie/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1, 12)}")]
