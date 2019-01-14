@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VMApp2.Models;
+using VMApp2.ViewModels;
 
 namespace VMApp2.Controllers
 {
@@ -23,6 +24,16 @@ namespace VMApp2.Controllers
             _context.Dispose();
         }
 
+        public ActionResult New()
+        {
+            var memTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = memTypes
+            };
+
+            return View(viewModel);
+        }
 
         // GET: Customer
         public ActionResult Index()
