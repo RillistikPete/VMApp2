@@ -1,0 +1,15 @@
+﻿@model VMApp2.Models.Movie
+@{
+    ViewBag.Title = "New Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Movie</h2>
+
+
+@using (@Html.BeginForm("Create", "Movie"))
+{
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+}

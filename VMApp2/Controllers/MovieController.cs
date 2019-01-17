@@ -43,6 +43,15 @@ namespace VMApp2.Controllers
             return View(movie);
         }
 
+        public ActionResult Create(Movie movie)
+        {
+            
+
+
+
+            return RedirectToAction("Index", "Movie");
+        }
+
         //public ActionResult Index(int? pageIndex, string sortBy)
         //{
         //if (!pageIndex.HasValue)
