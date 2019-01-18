@@ -70,8 +70,8 @@ namespace VMApp2.Controllers
             else
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-                //Malicious users can modify request data and add key/val pairs with the TryUpdateModel approach:
-                // and the work-around suggested by Microsoft says you can Whiteley's the propertiess to be updated
+                // Malicious users can modify request data and add key/val pairs with the TryUpdateModel approach:
+                // and the work-around suggested by Microsoft says you can Whiteley's the properties to be updated
                 // using the third argument (string array of props to be updated), but if you rename them, code will break.
                 // TryUpdateModel(customerInDb, "", new string[]{"Name", "Email"});
                 customerInDb.Name = customer.Name;
