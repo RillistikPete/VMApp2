@@ -27,8 +27,11 @@ namespace VMApp2.Controllers
         public ActionResult New()
         {
             var memTypes = _context.MembershipTypes.ToList();
+
             var viewModel = new CustomerFormViewModel
             {
+                //initialize customer here so that 'Id field is required' is not included in validation summary
+                Customer = new Customer(),
                 MembershipTypes = memTypes
             };
 
@@ -60,9 +63,19 @@ namespace VMApp2.Controllers
         }
 
         [HttpPost]
-        // Model-binding: this model is bound to request data
+        [ValidateAntiForgeryToken]
+        // Model-binding(customer): this model is bound to request data
         public ActionResult Save(Customer customer)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
             if(customer.Id == 0)
             {
                 _context.Customers.Add(customer);
