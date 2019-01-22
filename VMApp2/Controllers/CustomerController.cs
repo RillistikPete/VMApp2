@@ -63,7 +63,8 @@ namespace VMApp2.Controllers
         }
 
         [HttpPost]
-        // Model-binding: this model is bound to request data
+        [ValidateAntiForgeryToken]
+        // Model-binding(customer): this model is bound to request data
         public ActionResult Save(Customer customer)
         {
             if(!ModelState.IsValid)
