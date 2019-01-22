@@ -80,7 +80,8 @@ namespace VMApp2.Controllers
             //Add Validation:
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel
+                //passed 'movie' object into ViewModel instead of Movie = movie here
+                var viewModel = new MovieFormViewModel(movie)
                 {
                     Genres = _context.Genres.ToList()
                 };
