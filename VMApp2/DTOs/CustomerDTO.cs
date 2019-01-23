@@ -15,10 +15,12 @@ namespace VMApp2.DTOs
         [StringLength(100)]
         public string Name { get; set; }
 
-        [Min18YrsIfMember]
+        //[Min18YrsIfMember]
         public DateTime? BirthDate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
+
+        public MembershipType MembershipType { get; set; }
 
         public byte MembershipTypeId { get; set; }
     }
