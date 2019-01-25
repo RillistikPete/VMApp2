@@ -7,7 +7,7 @@ using VMApp2.Models;
 
 namespace VMApp2.DTOs
 {
-    public class CustomerDTO
+    public class MovieDTO
     {
         public int Id { get; set; }
 
@@ -15,13 +15,16 @@ namespace VMApp2.DTOs
         [StringLength(100)]
         public string Name { get; set; }
 
-        //[Min18YrsIfMember]
-        public DateTime? BirthDate { get; set; }
+        public Genre Genre { get; set; }
 
-        public bool IsSubscribedToNewsletter { get; set; }
+        [Required]
+        public byte GenreId { get; set; }
 
-        public MembershipType MembershipType { get; set; }
+        public DateTime DateAdded { get; set; }
 
-        public byte MembershipTypeId { get; set; }
+        public DateTime ReleaseDate { get; set; }
+
+        [Range(1, 20)]
+        public byte NumberInStock { get; set; }
     }
 }

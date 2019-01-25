@@ -13,6 +13,7 @@ namespace VMApp2.App_Start
         public MappingProfile()
         {
             CreateMap<Customer, CustomerDTO>();
+            CreateMap<Movie, MovieDTO>();
         }
     }
 }
