@@ -37,7 +37,7 @@ namespace VMApp2.Controllers.API
         }
 
         // POST api/customers
-        // If you name is 'PostCustomer', don't have to put following annotation [HttpPost]
+        // If name is 'PostCustomer', the following annotation [HttpPost] is not needed.
         [HttpPost]
         public IHttpActionResult CreateCustomer(CustomerDTO customerDTO)
         {
