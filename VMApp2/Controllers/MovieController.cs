@@ -73,8 +73,7 @@ namespace VMApp2.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken
-            ]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             //Add Validation:

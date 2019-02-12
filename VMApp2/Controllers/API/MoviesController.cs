@@ -43,7 +43,7 @@ namespace VMApp2.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            //Have to map DTO first argument, then model:
+            //AutoMapper: map DTO as first argument, then model as second:
             var movie = Mapper.Map<MovieDTO, Movie>(movieDTO);
             _context.Movies.Add(movie);
             _context.SaveChanges();
@@ -55,31 +55,38 @@ namespace VMApp2.Controllers.API
         }
 
         [HttpPut]
-        public void UpdateMovie(int id, MovieDTO movieDTO)
+        public IHttpActionResult UpdateMovie(int id, MovieDTO movieDTO)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                //throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             //current movie in Db:
             var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             Mapper.Map(movieDTO, movieInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
 
         [HttpDelete]
-        public void DeleteMovie(int id)
+        public IHttpActionResult DeleteMovie(int id)
         {
             var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Movies.Remove(movieInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
 
     }

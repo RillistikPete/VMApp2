@@ -14,6 +14,9 @@ namespace VMApp2.App_Start
         {
             CreateMap<Customer, CustomerDTO>();
             CreateMap<Movie, MovieDTO>();
+
+            CreateMap<Customer, CustomerDTO>().ForMember(c => c.Id, opt => opt.Ignore());
+            CreateMap<Movie, MovieDTO>().ForMember(m => m.Id, opt => opt.Ignore());
         }
     }
 }
