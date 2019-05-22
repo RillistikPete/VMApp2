@@ -43,8 +43,8 @@ namespace VMApp2.Controllers
         {
             // var customers = GetCustomers();  WITHOUT DATABASE
             //Need System.Data.Entity for c.MembershipType via Eager Loading
+            //Don't need list of custmers after adding datatables (it retrieves from api)
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
             return View(customers);
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 using VMApp2.DTOs;
 using VMApp2.Models;
 using AutoMapper;
@@ -22,7 +23,7 @@ namespace VMApp2.Controllers.API
         //GET: api/movies
         public IEnumerable<MovieDTO> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDTO>);
+            return _context.Movies.Include(m=>m.Genre).ToList().Select(Mapper.Map<Movie, MovieDTO>);
         }
 
         //GET: api/movies/{id}

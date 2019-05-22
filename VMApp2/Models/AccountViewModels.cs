@@ -8,6 +8,9 @@ namespace VMApp2.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Driver's License")]
+        public string DriverLicense { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -64,6 +67,10 @@ namespace VMApp2.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Driver License")]
+        public string DriverLicense { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

@@ -58,11 +58,11 @@ namespace VMApp2
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "613132472007-pivcele2j5g009od98utvpcfqob7ucre.apps.googleusercontent.com",
+                ClientSecret = "DpU51MEnFqu_9RKlAyuxFqog"
+            });
         }
     }
 }

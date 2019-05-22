@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using VMApp2.DTOs;
 using VMApp2.Models;
+using System.Data.Entity;
 
 namespace VMApp2.Controllers.API
 {
@@ -20,9 +21,14 @@ namespace VMApp2.Controllers.API
         }
 
         // GET api/customers
-        public IEnumerable<CustomerDTO> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
+            var customerDTOs = _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDTO>);
+
+            return Ok(customerDTOs);
         }
 
         // GET api/customers/1
