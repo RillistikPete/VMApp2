@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VMApp2.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using VMApp2.ViewModels;
 
 namespace VMApp2.Controllers
 {
@@ -156,7 +157,8 @@ namespace VMApp2.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    DriverLicense = model.DriverLicense
+                    DriverLicense = model.DriverLicense,
+                    Phone = model.Phone
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

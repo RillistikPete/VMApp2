@@ -21,12 +21,15 @@ namespace VMApp2.Controllers.API
         }
 
         // GET api/customers
-        public IHttpActionResult GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            var customerDTOs = _context.Customers
-                .Include(c => c.MembershipType)
-                .ToList()
-                .Select(Mapper.Map<Customer, CustomerDTO>);
+            //IQueryable object
+            var customersQuery = _context.Customers.Include(c => c.MembershipType);
+
+            if (!String.IsNullOrEmpty(query) && !String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(q => q.Name.Contains(query));
+
+            var customerDTOs = customersQuery.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
 
             return Ok(customerDTOs);
         }

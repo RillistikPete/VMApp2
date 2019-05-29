@@ -29,5 +29,6 @@ namespace VMApp2.Models
         [Range(1,20)]
         public byte NumberInStock { get; set; }
 
+        public bool? HasBeenWatched { get; set; }
     }
 }

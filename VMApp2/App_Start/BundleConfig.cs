@@ -14,7 +14,8 @@ namespace VMApp2
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/scripts/DataTables/jquery.dataTables.js",
-                        "~/scripts/DataTables/dataTables.bootstrap4.js"));
+                        "~/scripts/DataTables/dataTables.bootstrap4.js",
+                        "~/scripts/typeahead.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,7 +27,8 @@ namespace VMApp2
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-sandstone.css",
-                      "~/content/DataTables/css/dataTables.bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.css",
+                      "~/Content/typeahead.css",
                       "~/Content/Site.css"));
         }
     }

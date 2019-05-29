@@ -21,10 +21,20 @@ namespace VMApp2.Controllers.API
         }
 
         //GET: api/movies
-        public IEnumerable<MovieDTO> GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            return _context.Movies.Include(m=>m.Genre).ToList().Select(Mapper.Map<Movie, MovieDTO>);
+            var moviesQuery = _context.Movies.Include(m => m.Genre).Where(m => m.NumberInStock > 0);
+
+            if(!string.IsNullOrEmpty(query) && !string.IsNullOrWhiteSpace(query))
+            {
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+            }
+
+            var movieDTOs = moviesQuery.ToList().Select(Mapper.Map<Movie, MovieDTO>);
+
+            return Ok(movieDTOs);
         }
+
 
         //GET: api/movies/{id}
         public IHttpActionResult GetMovie(int id)
@@ -39,6 +49,7 @@ namespace VMApp2.Controllers.API
 
         //POST: api/movies
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateMovie(MovieDTO movieDTO)
         {
             if (!ModelState.IsValid)

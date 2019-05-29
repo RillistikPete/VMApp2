@@ -26,5 +26,7 @@ namespace VMApp2.DTOs
 
         [Range(1, 20)]
         public byte NumberInStock { get; set; }
+
+        public bool? HasBeenWatched { get; set; }
     }
 }

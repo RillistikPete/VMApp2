@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using VMApp2.Models;
 using VMApp2.ViewModels;
+using System.Runtime.Caching;
 
 namespace VMApp2.Controllers
 {
@@ -41,11 +42,13 @@ namespace VMApp2.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            // var customers = GetCustomers();  WITHOUT DATABASE
-            //Need System.Data.Entity for c.MembershipType via Eager Loading
-            //Don't need list of custmers after adding datatables (it retrieves from api)
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            return View(customers);
+            if (System.Runtime.Caching.MemoryCache.Default["Genres"] == null)
+            {
+                MemoryCache.Default["Genres"] = _context.Genres.ToList();
+            }
+            var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
+
+            return View();
         }
 
         public ActionResult Details(int? id)
